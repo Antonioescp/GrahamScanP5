@@ -34,8 +34,7 @@ function setup(){
     buttonGrahamScan.class('button-action');
     buttonGrahamScan.position( 50, windowHeight - 35);
     buttonGrahamScan.mouseClicked( () => {
-        if(points.length >= 3)
-            extremePoints = grahamScan();
+        extremePoints = grahamScan();
     });
 
     // button to autoscan current points and auto update convexhull
@@ -112,20 +111,10 @@ function mousePressed(){
     if(mouseX <= width && mouseX >= 0 && mouseY >= 0 && mouseY <= height && mouseButton === LEFT){
         points.push( { x: mouseX, y: mouseY } );
 
-        if(points.length >= 3 && autoScan)
+        if(autoScan)
             extremePoints = grahamScan();
     }
         
-}
-
-// handling keyboard input
-function keyPressed(){
-    switch(key){
-        case 'r':
-            points = [];
-            extremePoints = [];
-            break;
-    }
 }
 
 // calculates area given by the last inserted points
@@ -194,8 +183,7 @@ function grahamScan(){
 
             if( toLeft( s[s.length - 2], s[s.length - 1], t[t.length - 1] ) ){
                 s.push(t.pop());
-            }
-            else{
+            } else {
                 s.pop();
             }
 
